@@ -26,6 +26,16 @@
 				'after'  => '</div>',
 			)
 		);
+
+		if(function_exists('get_field')){
+			if (get_field('address')) {
+				echo '<address>' . get_field('address') . '</address>';
+			}
+			if(get_field('email')){
+				echo '<a href="mailto:'. get_field('email') .'">'. get_field('email') .'</a>';
+			}
+		}
+		
 		?>
 	</div><!-- .entry-content -->
 

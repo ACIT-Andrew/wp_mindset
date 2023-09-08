@@ -30,17 +30,6 @@ get_header();
 			endif;
 		endwhile; // End of the loop.
 
-		if(is_page(20)){
-			if(function_exists('get_field')){
-				if (get_field('address', 20)) {
-					echo '<address>' . get_field('address', 20) . '</address>';
-				}
-				if(get_field('email', 20)){
-					echo '<a href="mailto:'. get_field('email', 20) .'">'. get_field('email', 20) .'</a>';
-				}
-			}
-		}
-
 		?>
 
 	</main><!-- #primary -->
