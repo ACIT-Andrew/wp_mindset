@@ -120,23 +120,33 @@ function fwd_register_custom_post_types() {
         'hierarchical'       => false,
         'menu_position'      => 52,
         'menu_icon'          => 'dashicons-universal-access-alt',
-        'supports'           => array( 'title', 'editor' ),
-        // 'template'           => array(
-        //     array( 'core/heading', array( 'level' => '3', 'content' => 'Role', ) ),
-        //     array( 'core/paragraph', array( 'placeholder' => 'Describe the role...' ) ),
-        //     array( 'core/heading', array( 'level' => '3', 'content' => 'Requirements' ) ),
-        //     array( 'core/list' ),
-        //     array( 'core/heading', array( 'level' => '3', 'content' => 'Location' ) ),
-        //     array( 'core/paragraph' ),
-        //     array( 'core/heading', array( 'level' => '3', 'content' => 'How to Apply' ) ),
-        //     array( 'core/paragraph' ),
-        // ),
+        'supports'           => array( 'title' ),
+        'template'           => array(
+            // array( 'core/heading', array( 'level' => '3', 'content' => 'Role', ) ),
+            // array( 'core/paragraph', array( 'placeholder' => 'Describe the role...' ) ),
+            // array( 'core/heading', array( 'level' => '3', 'content' => 'Requirements' ) ),
+            // array( 'core/list' ),
+            // array( 'core/heading', array( 'level' => '3', 'content' => 'Location' ) ),
+            // array( 'core/paragraph' ),
+            // array( 'core/heading', array( 'level' => '3', 'content' => 'How to Apply' ) ),
+            // array( 'core/paragraph' ),
+        ),
         'template_lock' => 'all',
     );
     register_post_type( 'fwd-our-services', $args );
 }
 add_action( 'init', 'fwd_register_custom_post_types' );
 
+function change_add_post_placeholder_title( $title ){
+    $screen = get_current_screen();
+
+    if  ( 'fwd-our-services' == $screen->post_type ) {
+        $title = 'Add Service name';
+    }
+    return $title;
+}
+
+add_filter( 'enter_title_here', 'change_add_post_placeholder_title' );
 function fwd_rewrite_flush() {
     fwd_register_custom_post_types();
     flush_rewrite_rules();

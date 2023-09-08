@@ -35,11 +35,16 @@ get_header();
 		$args = array(
 			'post_type' 	 => 'fwd-testimonial',
 			'posts_per_page' => -1,
+			'orderby'		 => 'title',
+			'order'			 => 'ASC'
 		);
 		$query = new WP_Query($args);
 		if($query -> have_posts()):
 			while($query->have_posts()):
 				$query -> the_post();
+				?>
+				<h3><?php the_title(); ?></h3>
+				<?php
 				the_content();
 			endwhile;
 			wp_reset_postdata();
