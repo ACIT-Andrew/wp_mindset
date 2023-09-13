@@ -19,5 +19,8 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 		}else{
 			dynamic_sidebar('sidebar-1');
 		}
+
+		get_template_part( 'template-parts/work', 'categories' );
+		get_template_part( 'template-parts/about', 'testimonial' );
 	?>
 </aside><!-- #secondary -->

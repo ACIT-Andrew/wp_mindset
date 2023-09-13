@@ -406,7 +406,7 @@ select,
 optgroup,
 textarea {
 	color: #404040;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;
 	line-height: 1.5;
 }
@@ -417,6 +417,7 @@ h3,
 h4,
 h5,
 h6 {
+	font-family: 'Encode Sans Expanded', serif;
 	clear: both;
 	margin: .75em 0 .25em;
 }
@@ -978,6 +979,15 @@ svg path {
 	grid-template-columns: 1fr 1fr;
 	grid-gap: 2em;
 }
+
+/* About Page */
+.page-id-18 blockquote{
+	border-left: none;
+	padding-left: 0;
+}
+
+/* Contact Page */
+
 
 /* Footer
 --------------------------------------------- */

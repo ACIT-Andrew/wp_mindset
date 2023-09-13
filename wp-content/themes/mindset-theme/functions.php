@@ -181,10 +181,33 @@ add_action('widgets_init', 'fwd_widgets_init');
  */
 function fwd_scripts()
 {
+	// USE GOOGLE FONTS
+	$link = 'https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@500;700&family=Open+Sans:wght@400;700&display=swap';
+	wp_enqueue_style(
+		'fwd-googlefonts',
+		$link, // url
+		array(), // dependencies
+		null, // only use null for Google Fonts
+	);
+
 	wp_enqueue_style('fwd-style', get_stylesheet_uri(), array(), _S_VERSION);
 	wp_style_add_data('fwd-style', 'rtl', 'replace');
 
 	wp_enqueue_script('fwd-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+
+	// Enqueue SCROLL TO TOP script
+	wp_enqueue_script('scroll-to-top-script', get_template_directory_uri() . '/js/scroll-to-top.js', array(), _S_VERSION, array('strategy' => 'defer'));
+	// Enqueue SCROLL TO TOP CSS file
+	wp_enqueue_style('scroll-to-top-style', get_template_directory_uri() . '/css/scroll-to-top.css', array(), _S_VERSION);
+
+	// Enqueue Swiper on the Homepage
+	if (is_front_page()) {
+		wp_enqueue_style('swiper-styles', get_template_directory_uri() . '/css/swiper-bundle.css', array(), '7.4.1');
+
+		wp_enqueue_script('swiper-scripts', get_template_directory_uri() . '/js/swiper-bundle.min.js', array(), '7.4.1', array('strategy' => 'defer'));
+
+		wp_enqueue_script('swiper-settings', get_template_directory_uri() . '/js/swiper-settings.js', array('swiper-scripts'), _S_VERSION, array('strategy' => 'defer'));
+	}
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
 		wp_enqueue_script('comment-reply');
@@ -249,31 +272,31 @@ function fwd_block_editor_templates()
 		$post_type_object = get_post_type_object('page');
 		$post_type_object->template = array(
 			// define blocks here...
-			array( 
-				'core/paragraph', 
-				array( 
+			array(
+				'core/paragraph',
+				array(
 					'placeholder' => 'Add your introduction here...'
-				) 
-			),
-			array( 
-				'core/heading', 
-				array( 
-					'placeholder' => 'Add your heading here...',
-					'level' => 2
-				) 
-			),
-			array( 
-				'core/image', 
-				array( 
-					'align' => 'left', 
-					'sizeSlug' => 'medium' 
 				)
 			),
-			array( 
-				'core/paragraph', 
-				array( 
+			array(
+				'core/heading',
+				array(
+					'placeholder' => 'Add your heading here...',
+					'level' => 2
+				)
+			),
+			array(
+				'core/image',
+				array(
+					'align' => 'left',
+					'sizeSlug' => 'medium'
+				)
+			),
+			array(
+				'core/paragraph',
+				array(
 					'placeholder' => 'Add text here...'
-				) 
+				)
 			),
 		);
 		$post_type_object->template_lock = 'all';
@@ -283,11 +306,11 @@ function fwd_block_editor_templates()
 		$post_type_object = get_post_type_object('page');
 		$post_type_object->template = array(
 			// define blocks here...
-			array( 
+			array(
 				'core/shortcode',
 			),
-			array( 
-				'core/paragraph', 
+			array(
+				'core/paragraph',
 				array(
 					'placeholder' => 'Hello',
 				)
@@ -299,16 +322,16 @@ function fwd_block_editor_templates()
 add_action('init', 'fwd_block_editor_templates');
 
 // Change Block Editor to Classic Editor
-function fwd_post_filter( $use_block_editor, $post ) {
-    // Change 112 to your Page ID
-    $page_ids = array( 92, 8);
-    if ( in_array( $post->ID, $page_ids ) ) {
-        return false;
-    } else {
-        return $use_block_editor;
-    }
+function fwd_post_filter($use_block_editor, $post)
+{
+	// Change 112 to your Page ID
+	$page_ids = array(92, 8);
+	if (in_array($post->ID, $page_ids)) {
+		return false;
+	} else {
+		return $use_block_editor;
+	}
 }
-add_filter( 'use_block_editor_for_post', 'fwd_post_filter', 10, 2 );
+add_filter('use_block_editor_for_post', 'fwd_post_filter', 10, 2);
 
-
-
+//

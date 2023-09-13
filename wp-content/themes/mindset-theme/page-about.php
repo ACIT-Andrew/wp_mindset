@@ -49,6 +49,8 @@ get_header();
 			endwhile;
 			wp_reset_postdata();
 		endif;
+
+		// get_template_part( 'template-parts/work', 'categories' );
 		?>
 
 	</main><!-- #primary -->
