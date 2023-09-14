@@ -180,17 +180,17 @@ get_header();
 							$blog_query->the_post();
 							?>
 
-													<article>
-														<a href="<?php the_permalink(); ?>">
-															<h3><?php the_title(); ?></h3>
-															<p><?php echo get_the_date(); ?></p>
-														</a>
-													</article>
+							<article>
+								<a href="<?php the_permalink(); ?>">
+									<h3><?php the_title(); ?></h3>
+									<p><?php echo get_the_date(); ?></p>
+								</a>
+							</article>
 
-													<?php
-													if (has_post_thumbnail()) {
-														the_post_thumbnail('small');
-													}
+							<?php
+							if (has_post_thumbnail()) {
+								the_post_thumbnail('small');
+							}
 						endwhile;
 						wp_reset_postdata();
 					}
