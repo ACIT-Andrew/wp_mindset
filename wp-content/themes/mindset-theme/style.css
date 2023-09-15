@@ -816,7 +816,13 @@ svg path {
 	color: #fff;
 }
 
+.custom-logo {
+	display: inline;
+	width: 50px;
+}
+
 .site-branding {
+	display: flex;
 	padding: 1rem;
 }
 
