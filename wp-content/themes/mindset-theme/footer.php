@@ -12,6 +12,7 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
+		<?php echo do_shortcode( '[react-quotes]' ) ?>
 		<div class="footer-contact">
 			<?php
 				if(!is_page(20)){

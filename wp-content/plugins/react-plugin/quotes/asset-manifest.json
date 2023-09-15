@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/mindset/wp-content/plugins/react-plugin/quotes/static/css/main.073c9b0a.css",
+    "main.js": "/mindset/wp-content/plugins/react-plugin/quotes/static/js/main.9da4952a.js",
+    "static/js/787.82cbddb8.chunk.js": "/mindset/wp-content/plugins/react-plugin/quotes/static/js/787.82cbddb8.chunk.js",
+    "index.html": "/mindset/wp-content/plugins/react-plugin/quotes/index.html",
+    "main.073c9b0a.css.map": "/mindset/wp-content/plugins/react-plugin/quotes/static/css/main.073c9b0a.css.map",
+    "main.9da4952a.js.map": "/mindset/wp-content/plugins/react-plugin/quotes/static/js/main.9da4952a.js.map",
+    "787.82cbddb8.chunk.js.map": "/mindset/wp-content/plugins/react-plugin/quotes/static/js/787.82cbddb8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.9da4952a.js"
+  ]
+}
