@@ -702,50 +702,100 @@ svg path {
 	padding: 3rem 1rem 1rem;
 }
 
+/* WORKS ARCHIVE AND SINGLE, SERVICES NAVBAR */
+.site-main .home-work > article:hover{
+	/* Featured Works articles */
+	transform: translateX(2rem);
+}
+.page-id-16 .site-main > nav {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+	width: 70%;
+	margin: 0 auto;
+	padding: 1rem 0;
+	border: 2px solid navy;
+	border-radius: 4px;
+}
+.page-id-16 .site-main > nav > *:hover {
+	text-decoration: underline solid #fff200;
+	text-underline-offset: 0.5rem;
+}
+
+.post-type-archive-fwd-work .site-main > section{
+	padding: 0 3rem;
+}
+
+.fwd-work .entry-content{
+	padding: 0 2rem 0;
+}
+@media screen and (min-width: 50em) {
+	.page-id-16 .site-main > nav {
+		flex-direction: row;
+		width: 100%;
+		padding: 1rem;
+	}
+
+	.post-type-archive-fwd-work .site-main > section{
+		padding: 0;
+	}
+	
+	.fwd-work .entry-content{
+		padding: 0;
+	}
+}
+/* -------------- */
+
 @media screen and (min-width: 50em) {
 	.site {
 		max-width: 2200px;
 		display: grid;
 		grid-template-columns: 1fr minmax(auto, 720px) minmax(auto, 280px) 1fr;
 		grid-template-areas:
-			"header header header header"
-			". main sidebar ."
-			"footer footer footer footer";
+		"header header header header"
+		". main sidebar ."
+		"footer footer footer footer";
 	}
-
+	
 	.page-template-left-sidebar .site {
 		grid-template-columns: 1fr minmax(auto, 280px) minmax(auto, 720px) 1fr;
 		grid-template-areas:
-			"header header header header"
-			". sidebar main ."
-			"footer footer footer footer";
+		"header header header header"
+		". sidebar main ."
+		"footer footer footer footer";
 	}
-
+	
+	/* Responsive for home, works archive and works single */
 	.no-sidebar .site,
-	.page-template-full-width .site {
+	.page-template-full-width .site,
+	.post-type-archive-fwd-work .site,
+	.home .site,
+	.single.single-fwd-work .site{
 		grid-template-columns: 1fr minmax(0, 1000px) 1fr;
 		grid-template-areas:
-			"header header header"
-			". main ."
-			"footer footer footer";
+		"header header header"
+		". main ."
+		"footer footer footer";
 	}
-
+	
 	.site-header {
 		grid-area: header;
 	}
-
+	
 	.site-main {
 		grid-area: main;
 	}
-
+	
 	.widget-area {
 		grid-area: sidebar;
 	}
-
+	
 	.page-template-left-sidebar .widget-area {
 		padding: 3rem 3rem 1rem 1rem;
 	}
-
+	
 	.site-footer {
 		grid-area: footer;
 	}
