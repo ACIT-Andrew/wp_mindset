@@ -31,6 +31,18 @@
 			)
 		);
 
+		$this->template(
+			'settings/data/retention',
+			array(
+				'option_slug' => 'form_retain_geolocation',
+				'forever'     => get_option( 'retain_geolocation_forever' ),
+				'number'      => get_option( 'forminator_retain_geolocation_interval_number', 0 ),
+				'unit'        => get_option( 'forminator_retain_geolocation_interval_unit', 'days' ),
+				'title'       => esc_html__( 'User’s Geolocation', 'forminator' ),
+				'description' => esc_html__( 'Choose how long to retain user Geolocation data before submissions are anonymized.', 'forminator' ),
+			)
+		);
+
 		$form_submission_erasure_enabled = get_option( 'forminator_enable_erasure_request_erase_form_submissions', false );
 		?>
 		<span class="sui-settings-label"><?php esc_html_e( 'Account Erasure Requests', 'forminator' ); ?></span>

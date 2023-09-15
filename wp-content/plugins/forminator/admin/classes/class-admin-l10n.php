@@ -28,6 +28,10 @@ class Forminator_Admin_L10n {
 
 		$l10n['locale'] = array_merge( $locale, (array) $admin_locale );
 
+		$l10n['geolocation'] = array(
+			'configure_title' => esc_html__( 'Configure Geolocation', 'forminator-geo' ),
+		);
+
 		return apply_filters( 'forminator_l10n', $l10n );
 	}
 

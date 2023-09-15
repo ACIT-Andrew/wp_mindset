@@ -1,43 +1,39 @@
 <?php
 $section = Forminator_Core::sanitize_text_field( 'section', 'dashboard' );
+
+/**
+ * Forminator Settings Sections filter
+ *
+ * @param array $sections Settings Sections
+ */
+$sections = apply_filters(
+	'forminator_settings_sections',
+	array(
+		'dashboard'          => __( 'General', 'forminator' ),
+		'accessibility'      => __( 'Accessibility', 'forminator' ),
+		'appearance-presets' => __( 'Appearance Presets', 'forminator' ),
+		'data'               => __( 'Data', 'forminator' ),
+		'captcha'            => __( 'CAPTCHA', 'forminator' ),
+		'import'             => __( 'Import', 'forminator' ),
+		'submissions'        => __( 'Submissions', 'forminator' ),
+		'payments'           => __( 'Payments', 'forminator' ),
+	)
+);
 ?>
 <div class="sui-row-with-sidenav">
 
 	<div class="sui-sidenav">
 
 		<ul class="sui-vertical-tabs sui-sidenav-hide-md">
-
-			<li class="sui-vertical-tab <?php echo esc_attr( 'dashboard' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="dashboard"><?php esc_html_e( 'General', 'forminator' ); ?></a>
-			</li>
-
-			<li class="sui-vertical-tab <?php echo esc_attr( 'accessibility' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="accessibility"><?php esc_html_e( 'Accessibility', 'forminator' ); ?></a>
-			</li>
-			<li class="sui-vertical-tab <?php echo esc_attr( 'appearance-presets' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="appearance-presets"><?php esc_html_e( 'Appearance Presets', 'forminator' ); ?></a>
-			</li>
-
-			<li class="sui-vertical-tab <?php echo esc_attr( 'data' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="data"><?php esc_html_e( 'Data', 'forminator' ); ?></a>
-			</li>
-
-			<li class="sui-vertical-tab <?php echo esc_attr( 'captcha' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="captcha"><?php esc_html_e( 'CAPTCHA', 'forminator' ); ?></a>
-			</li>
-
-			<li class="sui-vertical-tab <?php echo esc_attr( 'import' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="import"><?php esc_html_e( 'Import', 'forminator' ); ?></a>
-			</li>
-
-			<li class="sui-vertical-tab <?php echo esc_attr( 'submissions' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="submissions"><?php esc_html_e( 'Submissions', 'forminator' ); ?></a>
-			</li>
-
-			<li class="sui-vertical-tab <?php echo esc_attr( 'payments' === $section ? 'current' : '' ); ?>">
-				<a href="#" data-nav="payments"><?php esc_html_e( 'Payments', 'forminator' ); ?></a>
-			</li>
-
+			<?php
+			foreach ( $sections as $section_key => $section_title ) {
+				?>
+				<li class="sui-vertical-tab <?php echo $section_key === $section ? 'current' : ''; ?>">
+					<a href="#" data-nav="<?php echo esc_attr( $section_key ); ?>"><?php echo esc_html( $section_title ); ?></a>
+				</li>
+				<?php
+			}
+			?>
 		</ul>
 
 		<div class="sui-sidenav-settings">
@@ -47,14 +43,13 @@ $section = Forminator_Core::sanitize_text_field( 'section', 'dashboard' );
 				<label class="sui-label"><?php esc_html_e( 'Navigate', 'forminator' ); ?></label>
 
 				<select id="forminator-sidenav" class="sui-select sui-mobile-nav">
-					<option value="dashboard"><?php esc_html_e( 'General', 'forminator' ); ?></option>
-					<option value="accessibility"><?php esc_html_e( 'Accessibility', 'forminator' ); ?></option>
-					<option value="appearance-presets"><?php esc_html_e( 'Appearance Presets', 'forminator' ); ?></option>
-					<option value="data"><?php esc_html_e( 'Data', 'forminator' ); ?></option>
-					<option value="captcha"><?php esc_html_e( 'CAPTCHA', 'forminator' ); ?></option>
-					<option value="import"><?php esc_html_e( 'Import', 'forminator' ); ?></option>
-					<option value="submissions"><?php esc_html_e( 'Submissions', 'forminator' ); ?></option>
-					<option value="payments"><?php esc_html_e( 'Payments', 'forminator' ); ?></option>
+					<?php
+					foreach ( $sections as $section_key => $section_title ) {
+						?>
+							<option value="<?php echo esc_attr( $section_key ); ?>"><?php echo esc_html( $section_title ); ?></option>
+						<?php
+					}
+					?>
 				</select>
 
 			</div>
@@ -71,5 +66,12 @@ $section = Forminator_Core::sanitize_text_field( 'section', 'dashboard' );
 	<?php $this->template( 'settings/tab-payments' ); ?>
 	<?php $this->template( 'settings/tab-accessibility' ); ?>
 	<?php $this->template( 'settings/tab-import' ); ?>
+
+	<?php
+		/**
+		 * Forminator Settings Content action
+		 */
+		do_action( 'forminator_settings_content' );
+	?>
 
 </div>

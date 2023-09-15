@@ -24564,6 +24564,10 @@ body.forminator_page_forminator-upgrade #wpbody-content .update-nag:empty+.sui-w
   }
 }
 
+.sui-2-12-16 .sui-wrap #forminator-modal.preview .forminator-geolocation-map-wrapper {
+  overflow-x: auto;
+}
+
 .sui-2-12-16 .sui-wrap #forminator-modal-body--postdata>.sui-tabs>.sui-tabs-content>.sui-tab-content .fui-modal-accordion {
   margin-bottom: -20px;
 }

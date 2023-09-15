@@ -73,8 +73,9 @@ $addon_slug = Forminator_Admin_Addons_page::get_addon_slug( $pid );
 
 							<?php
 							if ( FORMINATOR_PRO ) {
+								$version = $res->is_installed ? $res->version_installed : $res->version_latest;
 								/* translators: Plugin latest version */
-								echo '<span class="sui-tag sui-tag-sm addons-version">' . /* translators: %s: Installed version */ sprintf( esc_html__( 'Version %s', 'forminator' ), esc_html( $res->version_installed ) ) . '</span>';
+								echo '<span class="sui-tag sui-tag-sm addons-version">' . /* translators: %s: Installed version */ sprintf( esc_html__( 'Version %s', 'forminator' ), esc_html( $version ) ) . '</span>';
 
 								if ( $res->is_installed && $res->has_update ) {
 									/* translators: Plugin latest version */
@@ -293,7 +294,7 @@ $addon_slug = Forminator_Admin_Addons_page::get_addon_slug( $pid );
 
 
 <!-- Upsell modal for addon install -->
-<?php $addon_data = self::get_upsell_modal_info(); ?>
+<?php $addon_data = self::get_upsell_modal_info( $addon_slug ); ?>
 <div class="sui-modal sui-modal-lg">
 
 	<div

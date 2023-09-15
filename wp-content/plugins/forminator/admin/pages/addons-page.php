@@ -20,6 +20,9 @@ class Forminator_Addons_Page extends Forminator_Admin_Page {
 		if ( class_exists( 'WPMUDEV_Dashboard' ) ) {
 			$dash         = WPMUDEV_Dashboard::instance();
 			$project_info = array(
+				array(
+					'pid' => Forminator_Admin_Addons_page::GEOLOCATION_PID, // Geolocation Add-on.
+				),
 				// Stripe Add-on
 				array(
 					'pid' => 3953609,

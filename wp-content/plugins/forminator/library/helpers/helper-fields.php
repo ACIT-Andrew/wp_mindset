@@ -2412,7 +2412,17 @@ function forminator_get_entry_field_value( $entry, $mapper, $sub_meta_key = '', 
 		}
 	}
 
-	return $value;
+	/**
+	 * Filter Get enrty field value
+	 *
+	 * @param string $value Current value.
+	 * @param object $entry Forminator_Form_Entry_Model object.
+	 * @param array  $mapper Mapper property.
+	 * @param string $sub_meta_key Sub meta key.
+	 * @param bool   $allow_html Allow HTML.
+	 * @param int    $truncate Truncate.
+	 */
+	return apply_filters( 'forminator_get_entry_field_value', $value, $entry, $mapper, $sub_meta_key, $allow_html, $truncate );
 }
 
 /**

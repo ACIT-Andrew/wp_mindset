@@ -74,6 +74,11 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <p><?php esc_html_e( 'With Forminator PDF Generator Add-on, you can easily generate and send PDF files (e.g., form entries, receipts, invoices, quotations) to users after form submission.', 'forminator' ); ?></p>
                 </div>
 				<div class="sui-upgrade-page-features__item">
+					<i class="sui-icon-pin"  aria-hidden="true"></i>
+					<h3><?php esc_html_e( 'Provide Address auto-suggestion with Geolocation Add-on', 'forminator' ); ?></h3>
+					<p><?php esc_html_e( 'With Geolocation Add-on, you can collect your form submitter’s Geolocation information, and provide address auto-completion using Google Maps API.', 'forminator' ); ?></p>
+				</div>
+				<div class="sui-upgrade-page-features__item">
 					<i class="sui-icon-plugin-2" aria-hidden="true"></i>
 					<h3><?php esc_html_e( 'Unlock advanced features with Pro Add-ons', 'forminator' ); ?></h3>
 					<p><?php esc_html_e( 'Use our Pro Add-ons to extend the functionality of your forms and unlock Forminator\'s advanced features. Keep your Forminator installation simple by only activating features you need in your forms.', 'forminator' ); ?></p>

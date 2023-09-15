@@ -354,7 +354,7 @@ class Forminator_Admin_AJAX {
 			$pdf_data['pdf_id'] = Forminator_PDF_Form_Actions::create_new_pdf_form( $submitted_data );
 
 			if ( empty( $pdf_data['pdf_id'] ) || ! is_numeric( $pdf_data['pdf_id'] ) ) {
-				throw new Exception( esc_html__( 'Failed to created PDF. Please try again.', 'forminator' ) );
+				throw new Exception( esc_html__( 'Failed to create PDF. Please try again.', 'forminator' ) );
 			}
 
 			wp_send_json_success( $pdf_data );
@@ -1187,6 +1187,21 @@ class Forminator_Admin_AJAX {
 		}
 		update_option( 'forminator_retain_ip_interval_unit', $post_data['form_retain_ip_unit'] );
 		// IP Retention.
+
+		// Geolocation Retention.
+		$cform_retain_geolocation_forever = filter_var( $post_data['form_retain_geolocation_forever'], FILTER_VALIDATE_BOOLEAN );
+		update_option( 'retain_geolocation_forever', (string) $cform_retain_geolocation_forever );
+		if ( $cform_retain_geolocation_forever ) {
+			$post_data['form_retain_geolocation_number'] = 0;
+		}
+		if ( isset( $post_data['form_retain_geolocation_number'] ) ) {
+			$cform_geolocation_retention_number = intval( $post_data['form_retain_geolocation_number'] );
+			if ( $cform_geolocation_retention_number < 0 ) {
+				$cform_geolocation_retention_number = 0;
+			}
+			update_option( 'forminator_retain_geolocation_interval_number', $cform_geolocation_retention_number );
+		}
+		update_option( 'forminator_retain_geolocation_interval_unit', $post_data['form_retain_geolocation_unit'] );
 
 		/**
 		 * POLLS

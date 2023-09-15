@@ -359,7 +359,7 @@ class Forminator_Custom_Form_Admin extends Forminator_Admin_Module {
 	 * @return array
 	 */
 	public static function get_default_settings( $name, $settings = array() ) {
-		return array_merge(
+		$default_settings = array_merge(
 			array(
 				'formName'             => $name,
 				'pagination-header'    => 'nav',
@@ -383,6 +383,15 @@ class Forminator_Custom_Form_Admin extends Forminator_Admin_Module {
 			),
 			$settings
 		);
+
+		/**
+		 * Filter default settings for forms
+		 *
+		 * @param array $default_settings Default settings.
+		 */
+		$default_settings = apply_filters( 'forminator_form_default_settings', $default_settings );
+
+		return $default_settings;
 	}
 
 	/**

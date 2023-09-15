@@ -18,6 +18,7 @@
 			<li><span class="sui-icon-check sui-md" aria-hidden="true"></span> <?php esc_html_e( 'Accept subscription and recurring payments', 'forminator' ); ?></li>
 			<li><span class="sui-icon-check sui-md" aria-hidden="true"></span> <?php esc_html_e( 'Unlock Advanced form features with Pro Add-ons', 'forminator' ); ?></li>
 			<li><span class="sui-icon-check sui-md" aria-hidden="true"></span> <?php esc_html_e( 'Generate, download, and share PDFs on form submissions', 'forminator' ); ?></li>
+			<li><span class="sui-icon-check sui-md" aria-hidden="true"></span> <?php esc_html_e( 'Add auto-complete to Address fields via Google Maps API', 'forminator' ); ?></li>
 			<li><span class="sui-icon-check sui-md" aria-hidden="true"></span> <?php esc_html_e( 'Premium form fields and E-Signature integration', 'forminator' ); ?></li>
 			<li><span class="sui-icon-check sui-md" aria-hidden="true"></span> <?php esc_html_e( 'Early access to the newest form features', 'forminator' ); ?></li>
 			<li><span class="sui-icon-check sui-md" aria-hidden="true"></span> <?php esc_html_e( 'Smush and Hummingbird Pro performance pack', 'forminator' ); ?></li>

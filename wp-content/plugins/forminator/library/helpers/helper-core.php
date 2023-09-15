@@ -412,7 +412,7 @@ function forminator_print_front_scripts() {
  * @since 1.0
  */
 function forminator_localize_data() {
-	return array(
+	$data = array(
 		'ajaxUrl' => forminator_ajax_url(),
 		'cform'   => array(
 			'processing'                => esc_html__( 'Submitting form, please wait', 'forminator' ),
@@ -446,6 +446,13 @@ function forminator_localize_data() {
 			'loaded_error'    => esc_html__( 'The results could not be loaded.', 'forminator' ),
 		),
 	);
+
+	/**
+	 * Filter localize data
+	 *
+	 * @param array $data Current data array.
+	 */
+	return apply_filters( 'forminator_localize_data', $data );
 }
 
 /**
@@ -1223,6 +1230,9 @@ function forminator_reset_settings() {
 	delete_option( "forminator_poll_privacy_settings" );
 	delete_option( "forminator_retain_ip_interval_number" );
 	delete_option( "forminator_retain_ip_interval_unit" );
+	delete_option( 'retain_geolocation_forever' );
+	delete_option( 'forminator_retain_geolocation_interval_number' );
+	delete_option( 'forminator_retain_geolocation_interval_unit' );
 	delete_option( "forminator_retain_poll_submissions_interval_number" );
 	delete_option( "forminator_retain_poll_submissions_interval_unit" );
 	delete_option( "forminator_posts_map" );

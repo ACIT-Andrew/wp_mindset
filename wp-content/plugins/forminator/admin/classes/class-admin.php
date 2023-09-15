@@ -731,7 +731,7 @@ class Forminator_Admin {
 	public function add_plugin_action_links( $links ) {
 		// Settings link.
 		if ( forminator_get_admin_cap() ) {
-			$action_links['dashboard'] = '<a href="' . admin_url( 'admin.php?page=forminator-settings' ) . '" aria-label="' . esc_attr__( 'Go to Forminator Settings', 'forminator' ) . '">' . esc_html__( 'Settings', 'forminator' ) . '</a>';
+			$action_links['dashboard'] = '<a href="' . admin_url( 'admin.php?page=forminator' ) . '" aria-label="' . esc_attr__( 'Go to Forminator Dashboard', 'forminator' ) . '">' . esc_html__( 'Dashboard', 'forminator' ) . '</a>';
 		}
 		// Documentation link.
 		$action_links['docs'] = '<a href="' . forminator_get_link( 'docs', 'forminator_pluginlist_docs' ) . '" aria-label="' . esc_attr__( 'Docs', 'forminator' ) . '" target="_blank">' . esc_html__( 'Docs', 'forminator' ) . '</a>';

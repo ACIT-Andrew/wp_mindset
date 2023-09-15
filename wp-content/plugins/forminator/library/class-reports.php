@@ -163,6 +163,7 @@ class Forminator_Reports {
 				'reports'   => $report_data,
 			);
 
+			$email_subject = sanitize_text_field( $this->get_subject() );
 			$email_content = self::report_email_html( $params );
 
 			// Change nl to br.
@@ -174,7 +175,7 @@ class Forminator_Reports {
 				'Content-Type: text/html; charset=UTF-8',
 			);
 
-			$mail_sent = wp_mail( $recipient['email'], $this->get_subject(), $email_content, $headers );
+			$mail_sent = wp_mail( $recipient['email'], $email_subject, $email_content, $headers );
 		}
 
 		return $mail_sent;
@@ -188,7 +189,7 @@ class Forminator_Reports {
 	 */
 	public function get_subject() {
 		return sprintf( /* translators: %s: Url for site */
-			esc_html__( 'Here\'s your latest report for %s', 'forminator' ),
+			__( 'Here\'s your latest report for %s', 'forminator' ),
 			site_url()
 		);
 	}

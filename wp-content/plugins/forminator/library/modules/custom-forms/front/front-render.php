@@ -1524,7 +1524,7 @@ class Forminator_CForm_Front extends Forminator_Render_Form {
 		$cols  = $this->get_cols( $field );
 		$id    = $this->get_id( $field );
 
-		$html = sprintf( '<div id="%s" class="forminator-col forminator-col-%s %s">', esc_attr( $id ), esc_attr( $cols ), esc_attr( $class ) );
+		$html = sprintf( '<div id="%s" class="forminator-field-%s forminator-col forminator-col-%s %s">', esc_attr( $id ), esc_attr( $field['type'] ), esc_attr( $cols ), esc_attr( $class ) );
 
 		return apply_filters( 'forminator_before_field_markup', $html, $class );
 	}

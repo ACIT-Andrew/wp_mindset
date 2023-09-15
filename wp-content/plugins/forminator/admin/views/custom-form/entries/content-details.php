@@ -173,7 +173,8 @@ function forminator_submissions_content_details( $detail_item, $inside_group = f
 				<span class="sui-settings-label sui-sm"><?php echo esc_html( $detail_item['label'] ); ?></span>
 			</div>
 			<?php } ?>
-			<div class="sui-box-settings-col-2">
+
+			<div class="sui-box-settings-col-2<?php echo ( empty( $sub_entries ) || $inside_group ) ? '' : ' sui-border-frame'; ?>">
 
 				<?php if ( empty( $sub_entries ) ) { ?>
 
@@ -201,8 +202,14 @@ function forminator_submissions_content_details( $detail_item, $inside_group = f
 					<?php foreach ( $sub_entries as $sub_entry ) { ?>
 
 						<div class="sui-form-field">
-							<span class="sui-settings-label"><?php echo esc_html( $sub_entry['label'] ); ?></span>
-							<span class="sui-description"><?php echo wp_kses_post( $sub_entry['value'] ); ?></span>
+							<div class="sui-row">
+								<div class="sui-col-md-3">
+									<span class="sui-settings-label"><?php echo esc_html( $sub_entry['label'] ); ?></span>
+								</div>
+								<div class="sui-col-md-9">
+									<span class="sui-description"><?php echo wp_kses_post( $sub_entry['value'] ); ?></span>
+								</div>
+							</div>
 						</div>
 
 					<?php } ?>

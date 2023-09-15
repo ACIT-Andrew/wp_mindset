@@ -457,6 +457,7 @@ class Forminator_CForm_General_Data_Protection extends Forminator_General_Data_P
 		// Cleanup per each form setting
 		$this->cleanup_expired_entries( $overridden_forms_privacy );
 		$this->cleanup_ip_address();
+		$this->cleanup_geolocation();
 
 		// Global retention settings
 		$retain_number = get_option( 'forminator_retain_submissions_interval_number', 0 );
@@ -534,6 +535,26 @@ class Forminator_CForm_General_Data_Protection extends Forminator_General_Data_P
 			$entry_model = new Forminator_Form_Entry_Model( $entry_id );
 			$this->anonymize_entry_model( $entry_model );
 		}
+
+		return true;
+	}
+
+	/**
+	 * Cleanup User's Geolocation data based on settings
+	 */
+	public function cleanup_geolocation() {
+		$retain_number = get_option( 'forminator_retain_geolocation_interval_number', 0 );
+		$retain_unit   = get_option( 'forminator_retain_geolocation_interval_unit', 'days' );
+
+		$retain_time = $this->get_retain_time( $retain_number, $retain_unit );
+		if ( ! $retain_time ) {
+			return false;
+		}
+
+		global $wpdb;
+		$table_name = Forminator_Database_Tables::get_table_name( Forminator_Database_Tables::FORM_ENTRY_META );
+
+		$wpdb->query( $wpdb->prepare( "DELETE FROM {$table_name} WHERE `meta_key`='geolocation' AND `date_created` < %s", esc_sql( $retain_time ) ) );
 
 		return true;
 	}

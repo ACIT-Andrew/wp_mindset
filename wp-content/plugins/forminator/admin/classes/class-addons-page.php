@@ -20,6 +20,11 @@ class Forminator_Admin_Addons_page {
 	private static $instance = null;
 
 	/**
+	 * Geolocation Project ID
+	 */
+	const GEOLOCATION_PID = 4276231;
+
+	/**
 	 * Return the plugin instance
 	 *
 	 * @return Forminator_Admin_Addons_page|null
@@ -284,6 +289,9 @@ class Forminator_Admin_Addons_page {
 			case 4262971:
 				$addon_slug = 'pdf';
 				break;
+			case self::GEOLOCATION_PID:
+				$addon_slug = 'geolocation';
+				break;
 			default:
 				$addon_slug = '';
 				break;
@@ -432,9 +440,37 @@ class Forminator_Admin_Addons_page {
 		);
 		$pdf_addon->pro_url = 'https://wpmudev.com/project/forminator-pro/?utm_source=forminator&utm_medium=plugin&utm_campaign=forminator_pdf-addon';
 
+		// Geolocation Addon.
+		$geo_addon                    = new stdClass();
+		$geo_addon->pid               = self::GEOLOCATION_PID;
+		$geo_addon->name              = esc_html__( 'Geolocation Add-on', 'forminator' );
+		$geo_addon->info              = esc_html__( 'Collect your form submitter’s location information, and provide address auto-completion using Google Maps API.', 'forminator' );
+		$geo_addon->version_latest    = '1.0';
+		$geo_addon->version_installed = '1.0';
+		$geo_addon->is_network_admin  = is_network_admin();
+		$geo_addon->is_hidden         = false;
+		$geo_addon->features          = array(
+			esc_html__( 'Collect and store your users\' geolocation information.', 'forminator' ),
+			esc_html__( 'Add address auto-completion to your forms\' address field(s).', 'forminator' ),
+			esc_html__( 'See your users\' geolocation on Google Maps.', 'forminator' ),
+		);
+		$geo_addon->url               = (object) array(
+			'thumbnail' => esc_url( forminator_plugin_url() . 'assets/images/geolocation-logo@2x.png' ),
+		);
+		$geo_addon->changelog         = array(
+			array(
+				'time'    => '1688169600',
+				'version' => '1.0',
+				'log'     => '<p>- First public release</p>',
+			),
+		);
+
+		$geo_addon->pro_url = 'https://wpmudev.com/project/forminator-pro/?utm_source=forminator&utm_medium=plugin&utm_campaign=forminator_geolocation-addon';
+
 		return array(
+			$geo_addon,
 			$stripe_addon,
-			$pdf_addon
+			$pdf_addon,
 		);
 	}
 
@@ -442,9 +478,10 @@ class Forminator_Admin_Addons_page {
 	 * Upsell modal info.
 	 * Used in Addons page and upsell modal in React pages.
 	 *
+	 * @param string $addon_slug Addon slug which should not be included in description.
 	 * @return stdClass[]
 	 */
-	public static function get_upsell_modal_info() {
+	public static function get_upsell_modal_info( $addon_slug = '' ) {
 		// Generic Info
 		$upsell_info                      = array();
 		$upsell_info['button_text']       = esc_html__( 'Find Out more', 'forminator' );
@@ -452,7 +489,7 @@ class Forminator_Admin_Addons_page {
 		$upsell_info['login_text']        = esc_html__( 'Connect site', 'forminator' );
 		$upsell_info['features_title']    = esc_html__( 'Get the following Forminator Pro features', 'forminator' );
 		$upsell_info['features']          = array(
-			array(
+			'stripe'      => array(
 				'title' => esc_html__( 'Subscription and recurring payments', 'forminator' ),
 				'desc'  => esc_html__( 'Accept One-time or recurring payments directly on your WordPress site.', 'forminator' ),
 			),
@@ -460,16 +497,23 @@ class Forminator_Admin_Addons_page {
 				'title' => esc_html__( 'E-Signature integration', 'forminator' ),
 				'desc'  => esc_html__( 'Let users electronically and directly sign your form with our E-signature fields.', 'forminator' ),
 			),
-			array(
-				'title' => esc_html__( 'Geolocation Add-on ', 'forminator' ),
-				'desc'  => esc_html__( 'Get address auto-suggestions and see locations of your users with Geolocation.', 'forminator' ),
-				'tag'   => esc_html__( 'Coming soon', 'forminator' ),
+			'geolocation' => array(
+				'title' => esc_html__( 'Geolocation Add-on', 'forminator' ),
+				'desc'  => esc_html__( 'Get address auto-completion and see locations of your users with Geolocation.', 'forminator' ),
+			),
+			'pdf'         => array(
+				'title' => esc_html__( 'PDF Generator Add-on', 'forminator' ),
+				'desc'  => esc_html__( 'Generate and send PDF files of form entries to users after form submission.', 'forminator' ),
 			),
 			array(
 				'title' => esc_html__( '24/7 live WordPress support', 'forminator' ),
 				'desc'  => esc_html__( 'Get help with any WordPress issue from the best support team in the business.', 'forminator' ),
 			),
 		);
+
+		if ( $addon_slug ) {
+			unset( $upsell_info['features'][ $addon_slug ] );
+		}
 
 		// Stripe Addon
 		$upsell_info['stripe_title']        = esc_html__( 'Activate Stripe Subscription Add-on', 'forminator' );
@@ -481,6 +525,13 @@ class Forminator_Admin_Addons_page {
 		$upsell_info['pdf_desc']         = esc_html__( 'With Forminator PDF Generator Add-on, you can easily generate and send PDF files (e.g., form entries, receipts, invoices, quotations) to users after form submission.', 'forminator' );
 		$upsell_info['pdf_header_image'] = esc_url( forminator_plugin_url() . 'assets/images/pdf-header.png' );
 
+		// Geolocation Addon.
+		$upsell_info['geolocation_title'] = esc_html__( 'Activate Geolocation Add-on', 'forminator' );
+		$upsell_info['geolocation_desc']  = esc_html__( 'With Geolocation Add-on, you can collect your form submitter’s Geolocation information, and provide address auto-completion using Google Place API.', 'forminator' );
+
+		$upsell_info['geolocation_header_image'] = esc_url( forminator_plugin_url() . 'assets/images/geolocation-logo@2x.png' );
+
 		return $upsell_info;
 	}
+
 }

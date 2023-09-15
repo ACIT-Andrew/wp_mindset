@@ -195,6 +195,7 @@ if ( FORMINATOR_PRO ) {
 										'class'    => 'addons-configure',
 										'attrs'    => array(
 											'data-action'      => esc_attr( $addons_slug . '-connect-modal' ),
+											'data-slug'        => esc_attr( $addons_slug ),
 											'data-addon'       => esc_attr( $addons->pid ),
 											'data-nonce'       => esc_attr( wp_create_nonce( 'forminator_' . $addons_slug . '_settings_modal' ) ),
 											'data-modal-nonce' => esc_attr( wp_create_nonce( 'forminator_' . $addons_slug . '_settings_modal' ) ),
