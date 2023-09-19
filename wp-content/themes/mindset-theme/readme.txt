@@ -21,8 +21,3 @@ A starter theme for the FWDP 3600 course (Content Management Systems) of the Fro
 
 * Based on Underscores https://underscores.me/, (C) 2012-2020 Automattic, Inc., [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
 * normalize.css https://necolas.github.io/normalize.css/, (C) 2012-2018 Nicolas Gallagher and Jonathan Neal, [MIT](https://opensource.org/licenses/MIT)
-
-
-== Jonathon Credentials ==
-user: jleathers@bcit.ca
-pw: 08XnR7GiW*(Udlt0Sah@tf&4

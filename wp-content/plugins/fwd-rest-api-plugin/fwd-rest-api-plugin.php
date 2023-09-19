@@ -32,7 +32,15 @@ function fwd_rest_api_fields() {
 	);
 
 	// Add more REST API fields here...
-
+	register_rest_field( 
+		'post',          // REST object name
+		'next_post', // REST field name
+		array(
+			'get_callback'    => 'fwd_next_post',
+			'update_callback' => null,
+			'schema'          => null,
+		)
+	);
 
 }
 
@@ -52,3 +60,16 @@ function fwd_prev_post() {
 
 // Add more callback functions here...
 
+function fwd_next_post() {
+	$next_post = get_next_post();
+	if ( ! empty( $next_post ) ) {
+		$link = array(
+			'title' => $next_post->post_title,
+			'slug'  => $next_post->post_name,
+			'id'    => $next_post->ID,
+		);
+		return $link;
+	} else {
+		return '';
+	}
+}
