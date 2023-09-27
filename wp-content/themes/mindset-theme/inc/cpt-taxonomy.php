@@ -129,16 +129,6 @@ function fwd_register_custom_post_types()
 }
 add_action('init', 'fwd_register_custom_post_types');
 
-function change_add_post_placeholder_title($title)
-{
-    $screen = get_current_screen();
-
-    if ('fwd-our-services' == $screen->post_type) {
-        $title = 'Add Service name';
-    }
-    return $title;
-}
-
 // Register taxonomy
 function fwd_register_taxonomies()
 {
@@ -169,7 +159,7 @@ function fwd_register_taxonomies()
         'rewrite' => array('slug' => 'work-categories'),
     );
     register_taxonomy('fwd-work-category', array('fwd-work'), $args);
-
+    
     // Add Featured taxonomy
     $labels = array(
         'name' => _x('Featured', 'taxonomy general name'),
@@ -184,7 +174,7 @@ function fwd_register_taxonomies()
         'new_item_name' => __('New Work Featured'),
         'menu_name' => __('Featured'),
     );
-
+    
     $args = array(
         'hierarchical' => true,
         'labels' => $labels,
@@ -194,9 +184,9 @@ function fwd_register_taxonomies()
         'query_var' => true,
         'rewrite' => array('slug' => 'featured'),
     );
-
+    
     register_taxonomy('fwd-featured', array('fwd-work'), $args);
-
+    
     // Add Services taxonomy
     $labels = array(
         'name' => _x('Our Services', 'taxonomy general name'),
@@ -211,7 +201,7 @@ function fwd_register_taxonomies()
         'new_item_name' => __('New Work Services'),
         'menu_name' => __('Our Services'),
     );
-
+    
     $args = array(
         'hierarchical' => true,
         'labels' => $labels,
@@ -221,13 +211,24 @@ function fwd_register_taxonomies()
         'query_var' => true,
         'rewrite' => array('slug' => 'our-services'),
     );
-
+    
     register_taxonomy('fwd-our-services', array('fwd-our-services'), $args);
 }
 add_action('init', 'fwd_register_taxonomies');
 
-// Flush rewrites when changing themes
+// Change "Add title" to "Add Service name"
+function change_add_post_placeholder_title($title)
+{
+    $screen = get_current_screen();
+
+    if ('fwd-our-services' == $screen->post_type) {
+        $title = 'Add Service name';
+    }
+    return $title;
+}
 add_filter('enter_title_here', 'change_add_post_placeholder_title');
+
+// Flush rewrites when changing themes
 function fwd_rewrite_flush()
 {
     fwd_register_custom_post_types();
